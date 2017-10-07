@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Feedback, ContactType } from '../shared/feedback';
+import { FeedbackService } from '../services/feedback.service';
 import { visibility } from '../animations/app.animation';
 import { flyInOut } from '../animations/app.animation';
+
 
 
 @Component({
@@ -20,6 +22,8 @@ export class ContactComponent implements OnInit {
 
   feedbackForm: FormGroup;
   feedback: Feedback;
+  flag: boolean;
+  savedFeedback: Feedback;
   contactType = ContactType;
   formErrors = {
     'firstname': '',
@@ -27,7 +31,7 @@ export class ContactComponent implements OnInit {
     'telnum': '',
     'email': ''
   };
-
+  
   validationMessages = {
     'firstname': {
       'required':      'First Name is required.',
@@ -50,9 +54,10 @@ export class ContactComponent implements OnInit {
   };
 
 
-  constructor(private fb: FormBuilder) { 
+  constructor(private fb: FormBuilder, private feedbackservice: FeedbackService, @Inject('BaseURL') private BaseURL) { 
 
     this.createForm();
+    this.flag = false;
   
   }
 
@@ -89,12 +94,11 @@ export class ContactComponent implements OnInit {
       }
     }
   }
-
-  
   
   onSubmit() {
     this.feedback = this.feedbackForm.value;
-    console.log(this.feedback);
+    this.feedbackservice.submitFeedback(this.feedback).subscribe(feedback => this.savedFeedback = feedback);
+    setTimeout(() => { this.flag=true;}, 5000);
     this.feedbackForm.reset({
       firstname: '',
       lastname: '',
@@ -104,6 +108,8 @@ export class ContactComponent implements OnInit {
       contacttype: 'None',
       message: ''
     });
+    this.flag = false; 
+    this.savedFeedback = null;
   }
 
 
