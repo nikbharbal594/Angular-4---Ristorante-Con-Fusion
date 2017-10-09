@@ -4,12 +4,9 @@
   <button md-button md-dialog-close>&times;</button>
 </md-toolbar>
 
-<p>{{ user | json }}</p>
-
 <form novalidate #loginForm="ngForm" (ngSubmit)="onSubmit()">
   <md-dialog-content>
     <p>
-      
       <md-input-container dividerColor="{{username.invalid && !username.pristine ? 'warn' : 'primary'}}">
         <input mdInput placeholder="Username" type="text" [(ngModel)]="user.username" name="username" #username="ngModel" required>
         <md-hint>
