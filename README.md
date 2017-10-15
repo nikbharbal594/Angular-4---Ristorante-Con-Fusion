@@ -1,28 +1,5 @@
-# ConFusion
+This repository contains the component and template codes used in creating the browser rendering of the website for a restaurant called 'Ristorante Con Fusion', using the Angular 4 framework. It uses TypeScript syntax. Each section of the single page application is represented by its respective component.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.3.2.
+The Angular CLI that was used to create the Angular application, itself provides a server which can be accessed at localhost:4200/ to view the browser rendering. Also, the data used in the application is stored on the json server which is also provided by the Angular CLI. The json server can be accessed at localhost:/3000. To get the server that hosts the Angular application running, the command 'ng serve' is used at the command line and to start up the json server, the command 'json-server --watch db.json -d 2000' is used, where the delay of 2000ms is optional. The delay has been deliberately introduced so as to simulate the short delay that might come into the picture when the data is fetched from a remote server.
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+The application also makes use of the Restangular module provided by Angular CLI to communicate with the json server, since it supports the RESTful API and also ReactJS syntax, in the form of Observables.
